@@ -112,6 +112,13 @@
       });
       const newLi = $('<li>', { text: "They're so orgainzed!" });
       $('ol').append(newLi);
+      $('aside').html("<p>Sorry, that was silly</p>");
+      // $('body').css("backgroundColor", `rgb(${red}, ${green}, ${blue})`)
+      const red = $("input:nth-of-type(1)").val();
+      const green = $("input:nth-of-type(3)").val();
+      const blue = $("input:nth-of-type(2)").val();
+      let changeColor = function() { $('body').css("backgroundColor", `rgb(${red}, ${green}, ${blue})`)};
+      $("input").on("change", changeColor)
     </script>
   </body>
 </html>
