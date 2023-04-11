@@ -71,7 +71,7 @@
         </aside>
       </div>
       <div class="row mb-5">
-        <div class="col-sm-4">
+        <div class="col-sm-4" id="red-selector">
           Red
           <input
             class="form-control"
@@ -81,8 +81,8 @@
             value="255"
           />
         </div>
-        <div class="col-sm-4">
-          Blue
+        <div class="col-sm-4" id="green-selector">
+          Green
           <input
             class="form-control"
             type="number"
@@ -91,8 +91,8 @@
             value="255"
           />
         </div>
-        <div class="col-sm-4">
-          Green
+        <div class="col-sm-4" id="blue-selector">
+          Blue
           <input
             class="form-control"
             type="number"
@@ -106,19 +106,29 @@
     <script src="https://unpkg.com/jquery"></script>
     <script>
       $('article img').addClass('image-center');
+
       $('article:last-child').remove();
+
       $('#title').css('fontSize', function () {
         return Math.floor(Math.random() * 100 + 1);
       });
+
       const newLi = $('<li>', { text: "They're so orgainzed!" });
       $('ol').append(newLi);
-      $('aside').html("<p>Sorry, that was silly</p>");
-      // $('body').css("backgroundColor", `rgb(${red}, ${green}, ${blue})`)
-      const red = $("input:nth-of-type(1)").val();
-      const green = $("input:nth-of-type(3)").val();
-      const blue = $("input:nth-of-type(2)").val();
-      let changeColor = function() { $('body').css("backgroundColor", `rgb(${red}, ${green}, ${blue})`)};
-      $("input").on("change", changeColor)
+      $('aside').html('<p>Sorry, that was silly</p>');
+
+      let changeColor = function () {
+        const red = $('#red-selector > input').val();
+        const green = $('#green-selector > input').val();
+        const blue = $('#blue-selector > input').val();
+        $('body').css('backgroundColor', `rgb(${red}, ${green}, ${blue})`);
+      };
+
+      $('input').change(changeColor);
+
+      $('img').on('click', function () {
+        $('img').remove();
+      });
     </script>
   </body>
 </html>
